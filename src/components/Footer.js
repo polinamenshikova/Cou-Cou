@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="bg-neutral-900 text-white">
-      <div className="container mx-auto pt-6">
+      {/* <div className="container mx-auto pt-6">
         <div className="mb-6 flex justify-center">
           <a
             href="#!"
@@ -63,7 +63,7 @@ const Footer = () => {
             </svg>
           </a>
         </div>
-      </div>
+      </div> */}
       {/*Copyright section*/}
       <div
         className="p-4 text-center"
