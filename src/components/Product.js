@@ -6,6 +6,8 @@ import { BsPlus, BsEyeFill } from "react-icons/bs";
 
 import { CartContext } from "../contexts/CartContext";
 
+import { ProductContext } from "../contexts/ProductContext";
+
 const Product = ({ product }) => {
   const { addToCart } = useContext(CartContext);
   const { id, image, category, title, price } = product;
@@ -28,12 +30,11 @@ const Product = ({ product }) => {
               <BsPlus className="text-3x1" />
             </div>
           </button>
-          <Link
-            to={`/product/${id}`}
-            className="w-12 h-12 bg-white flex justify-center items-center text-primary drop-shadow-x1"
-          >
-            <BsEyeFill />
-          </Link>
+          <div className="w-12 h-12 bg-white flex justify-center items-center text-primary drop-shadow-x1">
+            <Link to={`/product/${id}`}>
+              <BsEyeFill />
+            </Link>
+          </div>
         </div>
       </div>
       {/* category & title */}

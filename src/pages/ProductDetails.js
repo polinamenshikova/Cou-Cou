@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import { CartContext } from "../contexts/CartContext";
 
@@ -8,9 +8,24 @@ import { ProductContext } from "../contexts/ProductContext";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
 
-  const { products } = useContext(ProductContext);
+  const { products, isDetailsPage, setIsDetailsPage } =
+    useContext(ProductContext);
   const { addToCart } = useContext(CartContext);
+
+  useEffect(() => {
+    // Check if the current location path includes '/product'
+    if (location.pathname.includes("/product")) {
+      setIsDetailsPage(true);
+    }
+
+    window.addEventListener("popstate", handleBeforeUnload);
+  }, [location]);
+
+  const handleBeforeUnload = () => {
+    setIsDetailsPage(false);
+  };
 
   const product = products.find((item) => {
     return item.id === parseInt(id);

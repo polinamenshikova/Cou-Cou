@@ -26,8 +26,8 @@ const CartItem = ({ item }) => {
               className="text-sm uppercase font-medium max-w-[240px] text-primary hover:underline"
             > */}
               {title}
+              {/* </Link> */}
             </div>
-            {/* </Link> */}
             <div
               onClick={() => removeFromCart(id)}
               className="text-xl cursor-pointer"

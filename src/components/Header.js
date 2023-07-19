@@ -7,8 +7,6 @@ import { CartContext } from "../contexts/CartContext";
 
 import { ProductContext } from "../contexts/ProductContext";
 
-import { Link } from "react-router-dom";
-
 import Logo from "../img/logo.svg";
 import LogoWhite from "../img/logo2.svg";
 import { useState } from "react";
@@ -18,9 +16,9 @@ const Header = () => {
   const { isOpen, setIsOpen } = useContext(SidebarContext);
   const { itemAmount } = useContext(CartContext);
 
-  // const { isViewClicked, setViewClicked } = useContext(ProductContext);
+  const { isDetailsPage, setIsDetailsPage } = useContext(ProductContext);
 
-  // console.log(isViewClicked);
+  console.log("ACTIVE" + isActive);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -38,6 +36,8 @@ const Header = () => {
         <div>
           {isActive ? (
             <img className="w-[40px]" src={Logo} alt="" />
+          ) : isDetailsPage ? (
+            <img className="w-[40px]" src={Logo} alt="" />
           ) : (
             <img className="w-[40px]" src={LogoWhite} alt="" />
           )}
@@ -49,8 +49,12 @@ const Header = () => {
         >
           <BsBag
             className={`${
-              isActive ? "text-black" : "text-white"
-            } text-2xl text-white transition-all`}
+              isActive
+                ? "text-black"
+                : isDetailsPage
+                ? "text-black"
+                : "text-white"
+            } text-2xl transition-all`}
           />
           <div className="bg-red-500 abosulte -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
             {itemAmount}

@@ -4,11 +4,7 @@ export const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [isViewClicked, setViewClicked] = useState(false);
-
-  const handleClick = () => {
-    setViewClicked(true);
-  };
+  const [isDetailsPage, setIsDetailsPage] = useState(false);
 
   //fetch products
   useEffect(() => {
@@ -23,7 +19,9 @@ const ProductProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductContext.Provider value={{ products, isViewClicked, handleClick }}>
+    <ProductContext.Provider
+      value={{ products, isDetailsPage, setIsDetailsPage }}
+    >
       {children}
     </ProductContext.Provider>
   );
