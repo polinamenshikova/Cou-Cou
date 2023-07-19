@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="bg-neutral-900 text-center text-white">
-      <div className="container px-6 pt-6">
+      <div className="container mx-auto pt-6">
         <div className="mb-6 flex justify-center">
           <a
             href="#!"
