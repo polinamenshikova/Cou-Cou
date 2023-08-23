@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="bg-neutral-900 text-white">
+    <footer className="mt-auto bg-neutral-900 text-white">
       <div
         className="p-4 text-center"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}

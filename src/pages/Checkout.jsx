@@ -41,6 +41,10 @@ const Checkout = () => {
   );
   const cartItems = useSelector((state) => state.cartItems.cartItems);
 
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+  localStorage.setItem("cartTotalAmount", JSON.stringify(cartTotalAmount));
+
   return (
     <section className="pt-32 sm:pt-20 pb-12 lg:py-32 flex">
       <div className="lg:flex-row sm:flex-col container mx-auto flex sm:px-10 lg:px-20 xl:px-32">
