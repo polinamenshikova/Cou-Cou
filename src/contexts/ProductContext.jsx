@@ -2,17 +2,35 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const ProductContext = createContext();
 
+const toCent = (amount) => {
+  const str = amount.toString();
+  const [int] = str.split(".");
+
+  return Number(
+    amount
+      .toFixed(2)
+      .replace(".", "")
+      .padEnd(int.length === 1 ? 3 : 4, "0")
+  );
+};
+
 const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [isDetailsPage, setIsDetailsPage] = useState(false);
 
-  //fetch products
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch(
         "https://fakestoreapi.com/products/category/women's clothing"
       );
-      const data = await response.json();
+      const text = await response.text();
+      const data = JSON.parse(text, (key, value) => {
+        if (key === "price") {
+          return toCent(value);
+        }
+
+        return value;
+      });
       setProducts(data);
     };
     fetchProducts();

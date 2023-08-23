@@ -6,17 +6,25 @@ import Product from "../components/Product";
 
 import Hero from "../components/Hero";
 
+import { useDispatch } from "react-redux";
+
+import { setIsActive } from "../redux/iconSlice";
+
 const Home = () => {
-  const { products, isDetailsPage, setIsDetailsPage } =
-    useContext(ProductContext);
+  const dispatch = useDispatch();
+  const { products } = useContext(ProductContext);
 
   useEffect(() => {
-    window.addEventListener("popstate", handleBeforeUnload);
-  });
+    window.addEventListener("scroll", () => {
+      window.scrollY > 60
+        ? dispatch(setIsActive(true))
+        : dispatch(setIsActive(false));
+    });
 
-  const handleBeforeUnload = () => {
-    setIsDetailsPage(true);
-  };
+    window.addEventListener("popstate", () => {
+      dispatch(setIsActive(true));
+    });
+  });
 
   const filteredProducts = products.filter((item) => {
     return (

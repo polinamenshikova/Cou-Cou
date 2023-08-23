@@ -1,31 +1,29 @@
 import React, { useContext, useEffect } from "react";
 
-import { useParams, useLocation } from "react-router-dom";
-
-import { CartContext } from "../contexts/CartContext";
+import { useParams } from "react-router-dom";
 
 import { ProductContext } from "../contexts/ProductContext";
 
-const ProductDetails = () => {
-  const { id } = useParams();
-  const location = useLocation();
+import { useDispatch } from "react-redux";
 
-  const { products, isDetailsPage, setIsDetailsPage } =
-    useContext(ProductContext);
-  const { addToCart } = useContext(CartContext);
+import { addItem } from "../redux/cartSlice";
+
+import { setIsActive } from "../redux/iconSlice";
+
+const ProductDetails = () => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product) => {
+    dispatch(addItem(product));
+  };
+
+  const { id } = useParams();
+
+  const { products } = useContext(ProductContext);
 
   useEffect(() => {
-    // Check if the current location path includes '/product'
-    if (location.pathname.includes("/product")) {
-      setIsDetailsPage(true);
-    }
-
-    window.addEventListener("popstate", handleBeforeUnload);
-  }, [location]);
-
-  const handleBeforeUnload = () => {
-    setIsDetailsPage(false);
-  };
+    dispatch(setIsActive(true));
+  });
 
   const product = products.find((item) => {
     return item.id === parseInt(id);
@@ -38,8 +36,6 @@ const ProductDetails = () => {
       </section>
     );
   }
-
-  console.log(product);
 
   const { title, price, description, image } = product;
 
@@ -55,11 +51,11 @@ const ProductDetails = () => {
               {title}
             </h1>
             <div className="text-xl text-red-500 font-medium mb-6">
-              $ {price}
+              $ {price / 100}
             </div>
-            <p className="mb-8">{description}</p>
+            <p className="mb-8"> {description} </p>
             <button
-              onClick={() => addToCart(product, product.id)}
+              onClick={() => handleAddToCart(product)}
               className="bg-primary py-4 px-8 text-white"
             >
               Add to cart
