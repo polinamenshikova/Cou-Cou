@@ -47,7 +47,7 @@ const Checkout = () => {
 
   return (
     <section className="pt-32 sm:pt-20 pb-12 lg:py-32 flex">
-      <div className="lg:flex-row sm:flex-col container mx-auto flex sm:px-10 lg:px-20 xl:px-32">
+      <div className="flex flex-col lg:flex-row container mx-auto sm:px-10 lg:px-20 xl:px-32">
         <div className="flex-1 px-4 pt-8">
           <p className="text-xl font-medium">Order Summary</p>
           <p className="text-gray-400">
