@@ -40,7 +40,7 @@ const ProductDetails = () => {
   const { title, price, description, image } = product;
 
   return (
-    <section className="pt-32 pb-12 lg:py-32 h-screen">
+    <section className="pt-32 pb-12 lg:py-32 md:h-screen lg:h-screen">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row">
           <div className="flex flex-1 justify-center items-center mb-8 lg:mb-0">
