@@ -6,7 +6,7 @@ import { BsBag } from "react-icons/bs";
 import { useSelector } from "react-redux";
 
 import Logo from "../img/logo.svg";
-import LogoWhite from "../img/logo2.svg";
+import LogoWhite from "../img/logo-white.svg";
 
 import { Link } from "react-router-dom";
 
@@ -26,9 +26,9 @@ const Header = () => {
         <Link to="/">
           <div>
             {isActive ? (
-              <img className="w-[40px]" src={Logo} alt="" />
+              <img className="w-[90px]" src={Logo} alt="" />
             ) : (
-              <img className="w-[40px]" src={LogoWhite} alt="" />
+              <img className="w-[90px]" src={LogoWhite} alt="" />
             )}
           </div>
         </Link>
