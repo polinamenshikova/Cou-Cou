@@ -15,6 +15,7 @@ import {
   removeItemFromCart,
   clearCart,
 } from "../redux/cartSlice";
+import ShippingAddress from "../components/ShippingAddress";
 
 const Checkout = () => {
   const { handleClose } = useContext(SidebarContext);
@@ -67,6 +68,7 @@ const Checkout = () => {
             })}
           </div>
         </div>
+
         <div className="flex-1 flex flex-col bg-gray-50 px-4 pt-8 lg:mt-0 sm:mt-10">
           <div className="justify-self-start">
             <p className="text-xl font-medium">Payment Details</p>
