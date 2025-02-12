@@ -49,7 +49,7 @@ const Sidebar = () => {
   const cartItems = useSelector((state) => state.cartItems.cartItems);
   return (
     <div
-      className={`${
+      className={` ${
         isOpen ? "right-0" : "-right-full"
       } w-full bg-white fixed top-0 h-full shadow-2x1 md:w-[35vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-[35px]`}
     >

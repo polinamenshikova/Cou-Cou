@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
+import localProducts from "../data/localProducts";
 
 export const ProductContext = createContext();
 
@@ -15,31 +16,17 @@ const toCent = (amount) => {
 };
 
 const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
   const [isDetailsPage, setIsDetailsPage] = useState(false);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetch(
-        "https://fakestoreapi.com/products/category/women's clothing"
-      );
-      const text = await response.text();
-      const data = JSON.parse(text, (key, value) => {
-        if (key === "price") {
-          return toCent(value);
-        }
-
-        return value;
-      });
-      setProducts(data);
-    };
-    fetchProducts();
-  }, []);
+  const [products] = useState(
+    localProducts.map((product) => ({
+      ...product,
+      price: toCent(product.price),
+    }))
+  );
 
   return (
-    <ProductContext.Provider
-      value={{ products, isDetailsPage, setIsDetailsPage }}
-    >
+    <ProductContext.Provider value={{ products }}>
       {children}
     </ProductContext.Provider>
   );

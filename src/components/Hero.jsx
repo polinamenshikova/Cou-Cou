@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { SidebarContext } from "../contexts/SidebarContext"; // Import Sidebar Context
 
 const Hero = () => {
+  const { setIsOpen } = useContext(SidebarContext); // Get sidebar state setter
+
+  useEffect(() => {
+    // Close sidebar when clicking anywhere outside of it
+    const handleClickOutside = (event) => {
+      const sidebar = document.querySelector(".sidebar"); // Make sure your sidebar has this class
+      if (sidebar && !sidebar.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  });
+
   return (
     <section className=" h-[800px] bg-hero bg-no-repeat bg-cover bg-center py-24">
       <div className="h-[600px] container mx-auto flex justify-around">
