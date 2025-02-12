@@ -25,7 +25,7 @@ const Product = ({ product }) => {
     <div>
       <div className="border border-[#e4e4e4] h-[300px] mb-4 relative overflow-hidden group transition">
         <div className="w-full h-full flex justify center items-center">
-          <div className="w-[200px] mx-auto flex justify-center items-center">
+          <div className="w-[255px] md:w-[200px] mx-auto flex justify-center items-center">
             <img
               className="scale-150 group-hover:scale-[1.7] transition duration-300"
               src={image}

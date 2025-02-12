@@ -28,57 +28,56 @@ const PaymentSuccessfull = () => {
   }, [dispatch]);
 
   return (
-    <div className="container lg:h-screen md:h-screen flex flex-col mx-auto mt-32 mb-10 sm:mt-20 lg:px-20 xl:px-3">
-      <div className="flex justify-start item-start space-y-2 flex-col md:ml-5">
+    <div className="container max-w-screen-xl  flex flex-col mx-auto mt-32 mb-10 sm:mt-20 lg:px-20 xl:px-3 overflow-hidden">
+      <div className="flex justify-start items-start space-y-2 flex-col md:ml-5">
         <h1 className="text-3xl md:ml-0 lg:ml-0 dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
           Thank you for your order!
         </h1>
       </div>
-      <div className="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
-        <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
-          <div className="flex flex-col justify-start items-start dark:bg-gray-800 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
+      <div className="mt-10 flex flex-col lg:flex-col xl:flex-row justify-center items-stretch w-full xl:space-x-8 space-y-4 border xl:flex-wrap">
+        <div className="flex flex-col justify-start items-start w-full space-y-4 xl:space-y-8">
+          <div className="flex flex-col justify-start items-start dark:bg-gray-800 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full xl:min-w-[300px] ">
             <p className="text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800">
               Order Summary
             </p>
-            {cart.map((item) => {
-              return (
-                <div
-                  className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full"
-                  key={item.id}
-                >
-                  <div className="pb-4 md:pb-8 w-full md:w-40">
-                    <img
-                      className="w-full hidden md:block"
-                      src={item.image}
-                      alt="dress"
-                    />
-                    <img
-                      className="w-40 md:hidden"
-                      src={item.image}
-                      alt="dress"
-                    />
+            {cart.map((item) => (
+              <div
+                className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full"
+                key={item.id}
+              >
+                <div className="pb-4 md:pb-8 w-full md:w-40">
+                  <img
+                    className="w-full hidden md:block object-cover"
+                    src={item.image}
+                    alt="item"
+                  />
+                  <img
+                    className="w-40 md:hidden object-cover"
+                    src={item.image}
+                    alt="item"
+                  />
+                </div>
+                <div className="border-b border-gray-200 flex flex-col xl:flex-row justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
+                  <div className="w-full flex flex-col justify-start items-start space-y-8">
+                    <h3 className="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800">
+                      {item.title}
+                    </h3>
                   </div>
-                  <div className="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
-                    <div className="w-full flex flex-col justify-start items-start space-y-8">
-                      <h3 className="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800">
-                        {item.title}
-                      </h3>
-                    </div>
-                    <div className="flex justify-between space-x-8 items-start w-full">
-                      <p className="text-base dark:text-white xl:text-lg leading-6 text-gray-800">
-                        {item.quantity}
-                      </p>
-                      <p className="text-base dark:text-white xl:text-lg  leading-6 text-gray-800">
-                        ${item.price / 100}
-                      </p>
-                    </div>
+                  <div className="flex justify-between space-x-8 items-start w-full">
+                    <p className="text-base dark:text-white xl:text-lg leading-6 text-gray-800">
+                      {item.quantity}
+                    </p>
+                    <p className="text-base dark:text-white xl:text-lg leading-6 text-gray-800">
+                      ${item.price / 100}
+                    </p>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
-          <div className="flex justify-center flex-col md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
-            <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
+          {/* FIXED SUMMARY BOX (ENSURES IT STAYS VISIBLE) */}
+          <div className="flex flex-wrap justify-center lg:flex-row items-stretch w-full space-y-4 xl:space-x-8">
+            <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6 xl:min-w-[300px] ">
               <h3 className="text-xl dark:text-white font-semibold leading-5 text-gray-800">
                 Summary
               </h3>
@@ -109,7 +108,7 @@ const PaymentSuccessfull = () => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
+            <div className="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6 ">
               <h3 className="text-xl dark:text-white font-semibold leading-5 text-gray-800">
                 Shipping
               </h3>
@@ -127,7 +126,7 @@ const PaymentSuccessfull = () => {
                       Fedex Delivery
                       <br />
                       <span className="font-normal">
-                        Delivery with 24 Hours
+                        Delivery within 24 Hours
                       </span>
                     </p>
                   </div>
